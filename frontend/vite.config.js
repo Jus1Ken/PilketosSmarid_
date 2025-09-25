@@ -6,6 +6,12 @@ export default defineConfig({
   ],
   server: {
     host: true,
-    allowedHosts: ['.ngrok-free.dev', '.loca.lt', 'pilketossmarid-production.up.railway.app']
+    allowedHosts: ['.ngrok-free.dev', '.loca.lt', 'pilketossmarid-production.up.railway.app'],
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true
+      }
+    }
   }
 })

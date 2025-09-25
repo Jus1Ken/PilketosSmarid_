@@ -54,7 +54,7 @@ const AdminPanel = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/create-unique-code", {
+      const response = await axios.post("/api/admin/create-unique-code", {
         uniqueCode,
         studentName,
       });
@@ -97,7 +97,7 @@ const AdminPanel = () => {
       const formData = new FormData();
       formData.append('csvFile', csvFile);
 
-      const response = await axios.post("http://localhost:5000/api/admin/upload-unique-codes-csv", formData, {
+      const response = await axios.post("/api/admin/upload-unique-codes-csv", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -125,7 +125,7 @@ const AdminPanel = () => {
 
   const handleDownloadPDF = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/admin/export-winner-pdf", {
+      const response = await axios.get("/api/admin/export-winner-pdf", {
         responseType: 'blob', // Important for downloading files
       });
 
@@ -168,7 +168,7 @@ const AdminPanel = () => {
     setAdminMessage("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/create-account", {
+      const response = await axios.post("/api/admin/create-account", {
         username: newAdminUsername,
         password: newAdminPassword,
       });
