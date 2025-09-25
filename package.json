@@ -11,7 +11,7 @@
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js",
     "build": "cd frontend && npm install && npm run build",
-    "fnd": "cd frontend && npm run dev"
+    "fnd": "npm run dev && cd frontend && npm run dev"
 
   },
   "keywords": [],
