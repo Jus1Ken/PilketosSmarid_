@@ -1,6 +1,9 @@
 {
   "name": "pilketos",
   "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "type": "module",
   "main": "backend/server.js",
   "scripts": {
