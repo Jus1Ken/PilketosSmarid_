@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useVoting } from "../context/VotingContext.jsx";
 import { Vote, Settings, BarChart3 } from "lucide-react";
+import logo from "/src/assets/logo.png";
 
 const Navbar = () => {
   const { isAuthenticated, logout, adminData } = useVoting();
@@ -18,7 +19,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-4">
-            <img src="/src/assets/logo.png" alt="SMARIDASA Logo" className="h-10 w-10" />
+            <img src={logo} alt="SMARIDASA Logo" className="h-10 w-10" />
             <h1 className="text-2xl font-bold text-gray-800">SMA NEGERI 10 SAMARINDA</h1>
           </div>
 
