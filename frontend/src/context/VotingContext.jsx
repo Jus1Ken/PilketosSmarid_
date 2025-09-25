@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useRef, useEffect } from "react";
 import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = '';
 
 const VotingContext = createContext();
 
@@ -307,7 +307,7 @@ export const VotingProvider = ({ children }) => {
     delete axios.defaults.headers.common['Authorization'];
   };
 
-  const totalVotes = Array.isArray(candidates) ? candidates.reduce((sum, c) => sum + c.votes, 0) : 0;
+  const totalVotes = candidates.reduce((sum, c) => sum + c.votes, 0);
 
   // 4. Kumpulkan semua state dan fungsi dalam satu objek `value`
   const value = {

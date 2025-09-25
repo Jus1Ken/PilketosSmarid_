@@ -40,7 +40,7 @@ const Home = ({ isAdmin, openModal }) => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Array.isArray(candidates) && candidates.map((candidate) => (
+          {candidates.map((candidate) => (
             <CandidateCard
               key={candidate.id}
               candidate={candidate}
