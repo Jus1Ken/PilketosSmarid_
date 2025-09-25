@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useRef, useEffect } from "react";
 import axios from "axios";
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const VotingContext = createContext();
 
@@ -55,10 +56,10 @@ export const VotingProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-   
+
     const fetchCandidates = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/candidates");
+        const response = await axios.get(`${API_BASE}/api/candidates`);
         setCandidates(response.data);
         setLoading(false);
       } catch (err) {
@@ -72,7 +73,7 @@ export const VotingProvider = ({ children }) => {
   const validateCode = async (code) => {
     try {
       const trimmedCode = code.trim();
-      const response = await axios.post("http://localhost:5000/api/validate-code", { uniqueCode: trimmedCode });
+      const response = await axios.post(`${API_BASE}/api/validate-code`, { uniqueCode: trimmedCode });
       setCodeValidated(true);
       setCodeError("");
       return true;
@@ -87,7 +88,7 @@ export const VotingProvider = ({ children }) => {
     try {
       const formData = new FormData();
       formData.append('photo', file);
-      const response = await axios.post("http://localhost:5000/api/admin/upload-photo", formData, {
+      const response = await axios.post(`${API_BASE}/api/admin/upload-photo`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -99,14 +100,14 @@ export const VotingProvider = ({ children }) => {
   };
 
   const handleVote = async (candidateId, validatedCode = null) => {
-   
+
     try {
       const codeToUse = validatedCode || uniqueCode.trim();
-      const response = await axios.post("http://localhost:5000/api/vote", {
+      const response = await axios.post(`${API_BASE}/api/vote`, {
         candidateId,
         uniqueCode: codeToUse,
       });
-      
+
       setCandidates(
         candidates.map((c) =>
           c.id === candidateId ? { ...c, votes: c.votes + 1 } : c
@@ -182,7 +183,7 @@ export const VotingProvider = ({ children }) => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/candidates", {
+      const response = await axios.post(`${API_BASE}/api/admin/candidates`, {
         ketua: {
           name: newCandidate.ketua.name,
           image: newCandidate.ketua.image,
@@ -217,7 +218,7 @@ export const VotingProvider = ({ children }) => {
   const updateCandidate = async () => {
     if (!editingCandidate) return;
     try {
-      const response = await axios.put(`http://localhost:5000/api/admin/candidates/${editingCandidate.id}`, {
+      const response = await axios.put(`${API_BASE}/api/admin/candidates/${editingCandidate.id}`, {
         ketua: {
           name: editingCandidate.ketua.name,
           image: editingCandidate.ketua.image,
@@ -250,7 +251,7 @@ export const VotingProvider = ({ children }) => {
   const deleteCandidate = async (id) => {
     if (window.confirm("Apakah Anda yakin ingin menghapus kandidat ini?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/admin/candidates/${id}`);
+        await axios.delete(`${API_BASE}/api/admin/candidates/${id}`);
        
         setCandidates(candidates.filter((c) => c.id !== id));
         alert("Kandidat berhasil dihapus!");
@@ -264,7 +265,7 @@ export const VotingProvider = ({ children }) => {
   // Fungsi autentikasi
   const login = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', {
+      const response = await axios.post(`${API_BASE}/api/admin/login`, {
         username,
         password
       });

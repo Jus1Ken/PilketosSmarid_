@@ -4,4 +4,8 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  server: {
+    host: true,
+    allowedHosts: ['.ngrok-free.dev', '.loca.lt']
+  }
 })
