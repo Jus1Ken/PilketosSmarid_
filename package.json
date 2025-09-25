@@ -2,14 +2,15 @@
   "name": "pilketos",
   "version": "1.0.0",
   "engines": {
-    "node": "20.x"
+    "node": "18.x"
   },
   "type": "module",
   "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon backend/server.js",
-    "start": "node backend/server.js"
+    "start": "node backend/server.js",
+    "build": "cd frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",

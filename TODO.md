@@ -1,1 +1,0 @@
-- [x] Add "engines" field to root package.json to specify Node.js version 20.x for Railway deployment compatibility
