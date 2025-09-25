@@ -40,6 +40,9 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
+// Serve static files from the React app build directory
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
 // Routes
 app.post('/api/admin/login', loginAdmin);
 
@@ -91,6 +94,11 @@ app.post('/api/admin/upload-photo', authenticateAdmin, upload.single('photo'), a
     console.error('Upload error:', error);
     res.status(500).json({ message: 'Upload failed', error: error.message });
   }
+});
+
+// Catch all handler: send back React's index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
