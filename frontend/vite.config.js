@@ -6,6 +6,6 @@ export default defineConfig({
   ],
   server: {
     host: true,
-    allowedHosts: ['.ngrok-free.dev', '.loca.lt', 'pilketossmarid-production-e445.up.railway.app']
+    allowedHosts: ['.ngrok-free.dev', '.loca.lt', 'pilketossmarid-production.up.railway.app']
   }
 })
