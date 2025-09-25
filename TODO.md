@@ -1,10 +1,14 @@
-# TODO: Fix Mixed Content Error
+# TODO: Fix Railway Deployment Proxy Error
 
-## Steps to Complete:
+## Completed Steps
+- [x] Analyze the issue: Frontend proxy error due to separate deployments (frontend and backend as separate Railway services).
+- [x] Update frontend/src/context/VotingContext.jsx to use VITE_API_URL env var for API base URL.
 
-1. [x] Update frontend/src/context/VotingContext.jsx: Change API_BASE fallback to '' for relative URLs.
-2. [x] Update frontend/src/components/AdminPanel.jsx: Replace 4 hardcoded 'http://localhost:5000' URLs with relative paths.
-3. [x] Update frontend/vite.config.js: Add Vite proxy for '/api' to 'http://localhost:5000' for development.
-4. [ ] Test the changes locally and in production (user to deploy and verify no mixed content errors).
-
-After completing each step, mark as [x].
+## Pending Steps
+- [ ] Deploy backend as separate Railway service (from backend/ directory or separate repo).
+- [ ] Get the backend Railway URL (e.g., https://backend-service.up.railway.app).
+- [ ] Deploy frontend as separate Railway service (from frontend/ directory or separate repo).
+- [ ] In frontend Railway service, set environment variable VITE_API_URL to the backend URL.
+- [ ] For frontend deployment: Set build command to "npm run build", publish directory to "dist" (static site).
+- [ ] Test the deployed frontend: API calls should now go to backend URL instead of failing proxy.
+- [ ] If issues, check Railway logs for build/start errors.
