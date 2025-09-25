@@ -3,6 +3,7 @@
 ## Completed Steps
 - [x] Analyze the issue: Frontend proxy error due to separate deployments (frontend and backend as separate Railway services).
 - [x] Update frontend/src/context/VotingContext.jsx to use VITE_API_URL env var for API base URL.
+- [x] Fix TypeError: candidates.reduce is not a function by adding Array.isArray check in totalVotes calculation.
 
 ## Pending Steps
 - [ ] Deploy backend as separate Railway service (from backend/ directory or separate repo).

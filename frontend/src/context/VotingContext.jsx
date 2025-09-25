@@ -307,7 +307,7 @@ export const VotingProvider = ({ children }) => {
     delete axios.defaults.headers.common['Authorization'];
   };
 
-  const totalVotes = candidates.reduce((sum, c) => sum + c.votes, 0);
+  const totalVotes = Array.isArray(candidates) ? candidates.reduce((sum, c) => sum + c.votes, 0) : 0;
 
   // 4. Kumpulkan semua state dan fungsi dalam satu objek `value`
   const value = {
