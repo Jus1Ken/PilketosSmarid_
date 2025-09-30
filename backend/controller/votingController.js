@@ -80,7 +80,7 @@ export const uploadUniqueCodesCSV = async (req, res) => {
     fs.createReadStream(req.file.path)
       .pipe(csv())
       .on('data', (data) => {
-        // Normalize column names (case insensitive)
+        
         const normalizedData = {};
         Object.keys(data).forEach(key => {
           normalizedData[key.toLowerCase()] = data[key];
@@ -326,14 +326,11 @@ export const deleteCandidate = async (req, res) => {
 // export pdf surat serah terima jabatan ketos & waketos
 export const exportWinnerPDF = async (req, res) => {
   try {
-    // Get top candidates by votes
-    const winners = await Candidate.find().sort({ votes: -1 }).limit(2);
-    if (winners.length < 1) {
+    // Get the winning candidate (pair with most votes)
+    const winner = await Candidate.findOne().sort({ votes: -1 });
+    if (!winner) {
       return res.status(400).json({ message: 'Tidak ada kandidat untuk membuat PDF' });
     }
-
-    const ketua = winners[0]; // Candidate with most votes
-    const wakilKetua = winners.length > 1 ? winners[1] : winners[0]; // Candidate with second most votes or same if only one
 
     // buat pdf dengan ukuran A4
     const doc = new PDFDocument({
@@ -429,16 +426,9 @@ export const exportWinnerPDF = async (req, res) => {
 
     // List of new committee
     doc.fontSize(11).font('Helvetica');
-    doc.text(`2. ${ketua.ketua.name} (NIS ${ketua.ketua.nis}) selaku Ketua OSIS Periode 2026/2027`, 65, currentY);
+    doc.text(`2. ${winner.ketua.name} (NIS ${winner.ketua.nis}) selaku Ketua OSIS Periode 2026/2027`, 65, currentY);
     currentY += 15;
-
-    // Handle wakil ketua data safely
-    const wakilKetuaName = wakilKetua.wakilKetua ? wakilKetua.wakilKetua.name :
-                          (wakilKetua.ketua ? wakilKetua.ketua.name : 'N/A');
-    const wakilKetuaNis = wakilKetua.wakilKetua ? wakilKetua.wakilKetua.nis :
-                         (wakilKetua.ketua ? wakilKetua.ketua.nis : 'N/A');
-
-    doc.text(`${wakilKetuaName} (NIS ${wakilKetuaNis}) selaku Wakil Ketua OSIS Periode`, 70, currentY);
+    doc.text(`${winner.wakilKetua.name} (NIS ${winner.wakilKetua.nis}) selaku Wakil Ketua OSIS Periode`, 70, currentY);
     currentY += 13;
     doc.text('2026/2027', 70, currentY);
 
@@ -468,10 +458,10 @@ export const exportWinnerPDF = async (req, res) => {
     // Names and NIS
     doc.fontSize(10).font('Helvetica');
     doc.text('Tiara Aisyah Putri Heryanto', leftX, currentY);
-    doc.text(`${ketua.ketua.name}`, rightX, currentY);
+    doc.text(`${winner.ketua.name}`, rightX, currentY);
     currentY += 10;
     doc.text('NIS 275455', leftX, currentY);
-    doc.text(`NIS ${ketua.ketua.nis}`, rightX, currentY);
+    doc.text(`NIS ${winner.ketua.nis}`, rightX, currentY);
 
     currentY += 25;
 
