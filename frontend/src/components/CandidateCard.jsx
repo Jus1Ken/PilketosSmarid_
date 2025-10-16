@@ -8,7 +8,7 @@ const CandidateCard = ({ candidate, handleVote, votedCandidate, isAdmin, openMod
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
       <div className="relative">
-        {/* Joint Image of Ketua and Wakil Ketua */} 
+
         <div className="relative h-64 bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center">
           <img
             src={candidate.jointPhoto}
@@ -24,7 +24,7 @@ const CandidateCard = ({ candidate, handleVote, votedCandidate, isAdmin, openMod
       </div>
 
       <div className="p-6">
-        {/* Nama Ketua dan Wakil */}
+
         <div className="mb-6 text-center">
           <div className="flex justify-center space-x-8">
             <div>
@@ -37,7 +37,7 @@ const CandidateCard = ({ candidate, handleVote, votedCandidate, isAdmin, openMod
             </div>
           </div>
         </div>
-        {/* Visi Bersama */}
+
         <div className="mb-4">
           <h4 className="text-lg font-semibold text-blue-600 mb-3">Visi Bersama:</h4>
           <div className="p-4 bg-blue-50 rounded-lg">
@@ -45,7 +45,6 @@ const CandidateCard = ({ candidate, handleVote, votedCandidate, isAdmin, openMod
           </div>
         </div>
 
-        {/* Misi Bersama */}
         <div className="mb-6">
           <h4 className="text-lg font-semibold text-blue-600 mb-3">Misi Bersama:</h4>
           <div className="p-4 bg-green-50 rounded-lg">
@@ -60,7 +59,6 @@ const CandidateCard = ({ candidate, handleVote, votedCandidate, isAdmin, openMod
           </div>
         </div>
 
-        {/* NIS Information */}
         <div className="mb-6 p-3 bg-gray-50 rounded-lg">
           <p className="text-sm text-gray-600">
             <span className="font-medium">NIS Ketua:</span> {candidate.ketua.nis} |

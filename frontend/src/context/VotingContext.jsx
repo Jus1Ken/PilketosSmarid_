@@ -115,7 +115,7 @@ export const VotingProvider = ({ children }) => {
       );
       setVotedCandidate(candidateId);
       alert("Voting berhasil!");
-      return true; // Return success
+      return true; 
     }
     catch (err) {
       const message = err.response?.data?.message || "Voting gagal";
@@ -152,7 +152,7 @@ export const VotingProvider = ({ children }) => {
       try {
         const imageUrl = await uploadImage(file);
 
-        // Check if we have a data-target attribute to determine which position to upload for
+        // Check if we have a dat-target attribute to determine which position to upload for
         const target = e.target.getAttribute('data-target') || (isWakilKetua ? 'wakilKetua' : 'ketua');
 
         if (target === 'ketua' || target === 'wakilKetua') {
@@ -207,7 +207,7 @@ export const VotingProvider = ({ children }) => {
         visi: "",
         misi: [""],
         jointPhoto: "",
-      }); // Reset form
+      }); 
       alert("Paslon berhasil ditambahkan!");
     } catch (error) {
       const message = error.response?.data?.message || error.message || "Terjadi kesalahan saat menambahkan paslon";
@@ -277,7 +277,6 @@ export const VotingProvider = ({ children }) => {
         localStorage.setItem('adminToken', token);
         localStorage.setItem('adminData', JSON.stringify(admin));
 
-        // Update state
         setIsAuthenticated(true);
         setAdminData(admin);
 
@@ -295,21 +294,17 @@ export const VotingProvider = ({ children }) => {
   };
 
   const logout = () => {
-    // Clear localStorage
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminData');
 
-    // Update state
     setIsAuthenticated(false);
     setAdminData(null);
 
-    // Remove auth header
     delete axios.defaults.headers.common['Authorization'];
   };
 
   const totalVotes = candidates.reduce((sum, c) => sum + c.votes, 0);
 
-  // 4. Kumpulkan semua state dan fungsi dalam satu objek `value`
   const value = {
     candidates,
     setCandidates,

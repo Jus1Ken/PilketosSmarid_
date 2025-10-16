@@ -6,7 +6,6 @@ import { useVoting } from "../context/VotingContext";
 const Home = ({ isAdmin, openModal }) => {
   const { candidates, totalVotes, handleVote, votedCandidate } = useVoting();
   
-  // Calculate voting status
   const hasVoted = votedCandidate !== null;
   const votingProgress = candidates.length > 0 
     ? Math.round((totalVotes / (candidates.length * 100)) * 100) 
@@ -15,7 +14,6 @@ const Home = ({ isAdmin, openModal }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <div className="container mx-auto px-4 py-8 flex flex-col justify-center items-center min-h-screen">
-        {/* Header Section */}
         <div className="text-center mb-12 max-w-4xl">
           <div className="inline-block bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
             Pemilihan OSIS 2025/2026
@@ -33,7 +31,6 @@ const Home = ({ isAdmin, openModal }) => {
             Periode 2025/2026
           </p>
 
-          {/* Voting Status Alert */}
           {hasVoted ? (
             <div className="bg-green-50 border-2 border-green-200 text-green-700 px-6 py-4 rounded-xl inline-flex items-center gap-3 mb-8 shadow-sm">
               <CheckCircle className="h-5 w-5" />
@@ -50,7 +47,6 @@ const Home = ({ isAdmin, openModal }) => {
             </div>
           )}
 
-          {/* Statistics Cards */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow min-w-[140px]">
               <Users className="h-8 w-8 text-blue-600 mx-auto mb-3" />
@@ -80,7 +76,6 @@ const Home = ({ isAdmin, openModal }) => {
           </div>
         </div>
 
-        {/* Candidates Grid */}
         <div className="w-full max-w-7xl">
           {candidates.length === 0 ? (
             <div className="text-center py-16">

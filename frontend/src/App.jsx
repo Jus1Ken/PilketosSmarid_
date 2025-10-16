@@ -69,11 +69,9 @@ const VotingWebsiteContent = () => {
       <Navbar />
 
       <Routes>
-        {/* Public Routes */}
         <Route path="/" element={<Home openModal={openModal} />} />
         <Route path="/results" element={<Results />} />
 
-        {/* Admin Routes */}
         <Route
           path="/admin/login"
           element={

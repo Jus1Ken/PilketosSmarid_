@@ -19,11 +19,9 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 
-// Configure multer for memory storage (for images)
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-// Configure multer for disk storage (for CSV files)
 const csvStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads/');
@@ -36,11 +34,9 @@ const csvUpload = multer({ storage: csvStorage });
 
 const PORT = process.env.PORT || 5000;
 
-// Connect to DB
 
 connectDB();
 
-// Serve static files from the React app build directory
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // Routes
@@ -50,31 +46,25 @@ app.get('/api/candidates', getCandidates);
 app.post('/api/validate-code', validateCode);
 app.post('/api/vote', voteCandidate);
 
-// Admin account creation route
 import { createAdmin } from './controller/authController.js';
 
 app.post('/api/admin/create-account', authenticateAdmin, createAdmin);
 
-// Admin kandidat route managemen
 app.post('/api/admin/candidates', authenticateAdmin, addCandidate);
 app.put('/api/admin/candidates/:id', authenticateAdmin, updateCandidate);
 app.delete('/api/admin/candidates/:id', authenticateAdmin, deleteCandidate);
 
-// Admin kode untik routes
 app.post('/api/admin/create-unique-code', authenticateAdmin, createUniqueCode);
 app.post('/api/admin/upload-unique-codes-csv', authenticateAdmin, csvUpload.single('csvFile'), uploadUniqueCodesCSV);
 
-// Export pdf untuk pemenang
 app.get('/api/admin/export-winner-pdf', authenticateAdmin, exportWinnerPDF);
 
-// Upload foto kandidat
 app.post('/api/admin/upload-photo', authenticateAdmin, upload.single('photo'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'No file uploaded' });
     }
 
-    // Upload ke cloudinary
     const result = await new Promise((resolve, reject) => {
       const stream = cloudinary.uploader.upload_stream(
         {
@@ -96,7 +86,6 @@ app.post('/api/admin/upload-photo', authenticateAdmin, upload.single('photo'), a
   }
 });
 
-// Catch all handler: send back React's index.html file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });

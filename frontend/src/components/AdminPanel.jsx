@@ -147,7 +147,6 @@ const AdminPanel = () => {
   };
 
   const handleCreateAdmin = async () => {
-    // Validasi form
     if (!newAdminUsername || !newAdminPassword || !confirmPassword) {
       setAdminError("Username, password, dan konfirmasi password harus diisi");
       return;
@@ -176,7 +175,6 @@ const AdminPanel = () => {
       setAdminMessage("Admin baru berhasil dibuat!");
       setAdminError("");
 
-      // Reset form
       setNewAdminUsername("");
       setNewAdminPassword("");
       setConfirmPassword("");
@@ -190,7 +188,7 @@ const AdminPanel = () => {
   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 py-8">
-      {/* Hidden file input for image uploads */}
+      
       <input
         type="file"
         ref={fileInputRef}
@@ -213,7 +211,6 @@ const AdminPanel = () => {
           </h3>
 
           <div className="space-y-6">
-            {/* Nama Ketua */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Nama Ketua
@@ -239,7 +236,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* NIS Ketua */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 NIS Ketua
@@ -265,7 +261,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* Nama Wakil Ketua */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Nama Wakil Ketua
@@ -291,7 +286,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* NIS Wakil Ketua */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 NIS Wakil Ketua
@@ -317,7 +311,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* Visi */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Visi
@@ -343,7 +336,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* Misi */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Misi
@@ -390,7 +382,6 @@ const AdminPanel = () => {
               </button>
             </div>
 
-            {/* Foto Bersama */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Foto Bersama Ketua & Wakil Ketua
@@ -418,7 +409,6 @@ const AdminPanel = () => {
               </div>
             </div>
 
-            {/* Tombol Simpan / Update */}
             <div className="flex space-x-4">
               <button
                 onClick={editingCandidate ? updateCandidate : addCandidate}
@@ -438,7 +428,6 @@ const AdminPanel = () => {
           </div>
         </div>
 
-        {/* Form Generate Kode Unik */}
         <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 mb-8">
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <Key className="h-6 w-6 mr-2 text-purple-600" />
@@ -446,7 +435,6 @@ const AdminPanel = () => {
           </h3>
 
           <div className="space-y-4">
-            {/* Nama Siswa */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Nama Siswa
@@ -460,7 +448,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* Kode Unik */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Kode Unik
@@ -483,7 +470,6 @@ const AdminPanel = () => {
               </div>
             </div>
 
-            {/* Pesan Error/Sukses */}
             {codeError && (
               <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
                 {codeError}
@@ -495,7 +481,6 @@ const AdminPanel = () => {
               </div>
             )}
 
-            {/* Tombol Buat Kode */}
             <button
               onClick={handleCreateUniqueCode}
               className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 font-semibold transition-colors"
@@ -505,7 +490,6 @@ const AdminPanel = () => {
           </div>
         </div>
 
-        {/* Form Upload CSV Kode Unik */}
         <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 mb-8">
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <Upload className="h-6 w-6 mr-2 text-purple-600" />
@@ -513,7 +497,6 @@ const AdminPanel = () => {
           </h3>
 
           <div className="space-y-4">
-            {/* Info Format CSV */}
             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <h4 className="text-sm font-semibold text-blue-800 mb-2">Format CSV yang Diterima:</h4>
               <p className="text-sm text-blue-700 mb-2">
@@ -526,7 +509,6 @@ const AdminPanel = () => {
               </p>
             </div>
 
-            {/* File Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Pilih File CSV
@@ -545,7 +527,6 @@ const AdminPanel = () => {
               )}
             </div>
 
-            {/* Pesan Error/Sukses */}
             {csvError && (
               <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
                 {csvError}
@@ -557,7 +538,6 @@ const AdminPanel = () => {
               </div>
             )}
 
-            {/* Tombol Upload */}
             <button
               onClick={handleUploadCsv}
               disabled={!csvFile || isUploading}
@@ -572,7 +552,6 @@ const AdminPanel = () => {
           </div>
         </div>
 
-        {/* Export PDF Hasil Voting */}
         <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 mb-8">
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <Download className="h-6 w-6 mr-2 text-purple-600" />
@@ -590,7 +569,6 @@ const AdminPanel = () => {
               </p>
             </div>
 
-            {/* Tombol Download PDF */}
             <button
               onClick={handleDownloadPDF}
               className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 font-semibold transition-colors flex items-center justify-center"
@@ -601,7 +579,6 @@ const AdminPanel = () => {
           </div>
         </div>
 
-        {/* Form Buat Admin Baru */}
         <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 mb-8">
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <UserPlus className="h-6 w-6 mr-2 text-purple-600" />
@@ -609,7 +586,6 @@ const AdminPanel = () => {
           </h3>
 
           <div className="space-y-4">
-            {/* Username */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Username Admin
@@ -623,7 +599,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Password
@@ -637,7 +612,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* Konfirmasi Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Konfirmasi Password
@@ -651,7 +625,6 @@ const AdminPanel = () => {
               />
             </div>
 
-            {/* Info */}
             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <h4 className="text-sm font-semibold text-blue-800 mb-2">Catatan:</h4>
               <ul className="text-sm text-blue-700 space-y-1">
@@ -662,7 +635,6 @@ const AdminPanel = () => {
               </ul>
             </div>
 
-            {/* Pesan Error/Sukses */}
             {adminError && (
               <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
                 {adminError}
@@ -674,7 +646,6 @@ const AdminPanel = () => {
               </div>
             )}
 
-            {/* Tombol Buat Admin */}
             <button
               onClick={handleCreateAdmin}
               disabled={isCreatingAdmin}
@@ -699,7 +670,6 @@ const AdminPanel = () => {
           </div>
         </div>
 
-        {/* Daftar Kandidat */}
         <div className="max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold text-gray-800 mb-6">Daftar Paslon</h3>
           <div className="grid md:grid-cols-2 gap-6">

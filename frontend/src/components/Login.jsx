@@ -105,7 +105,6 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Error Message */}
           {error && (
             <div className="rounded-md bg-red-50 p-4">
               <div className="flex">
@@ -124,7 +123,6 @@ const Login = () => {
             </div>
           )}
 
-          {/* Success Message */}
           {success && (
             <div className="rounded-md bg-green-50 p-4">
               <div className="flex">

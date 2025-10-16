@@ -13,11 +13,8 @@ const candidateSchema = new mongoose.Schema({
     nis: { type: String, required: true },
 
   },
-  // Common fields
   votes: { type: Number, default: 0 },
-  // Joint photo of both candidates
   jointPhoto: { type: String, required: true },
-  // Combined visi and misi for display purposes
   visi: { type: String },
   misi: [{ type: String }],
 });

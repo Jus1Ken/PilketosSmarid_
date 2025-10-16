@@ -23,7 +23,7 @@ const Modal = ({ isOpen, onClose, onConfirm, candidateName, uniqueCode, setUniqu
       const isValid = await validateCode(inputCode);
       if (isValid) {
         setUniqueCode(inputCode);
-        onConfirm(inputCode.trim()); // Pass the validated code directly
+        onConfirm(inputCode.trim()); 
       }
     } catch (error) {
       console.error("Error validating code:", error);
@@ -50,7 +50,7 @@ const Modal = ({ isOpen, onClose, onConfirm, candidateName, uniqueCode, setUniqu
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Konfirmasi Voting</h2>
           <p className="text-gray-600 mb-2">Masukkan kode unik Anda untuk memilih pasangan calon</p>
           <p className="text-xs text-orange-600 bg-orange-50 px-3 py-1 rounded-lg">
-            ⚠️ Setelah voting, kode unik Anda akan dinonaktifkan dan tidak dapat digunakan lagi
+            ⚠️ Setelah voting, kode unik akan dinonaktifkan dan tidak dapat digunakan lagi
           </p>
         </div>
 
